@@ -1,100 +1,106 @@
-// Retrieve todo from local storage or initialize an empty array
-
 let todo = JSON.parse(localStorage.getItem("todo")) || [];
 
-
-
-
 const todoInput = document.getElementById("todoInput");
-
 const todoList = document.getElementById("todoList");
-
-const todocount = document.getElementById("todoCount");
-
+const todoCount = document.getElementById("todoCount");
 const AddButton = document.querySelector(".btn");
-
 const deleteButton = document.getElementById("deleteButton");
 
-// Function to render the todo list
+document.addEventListener("DOMContentLoaded", function () {
+  AddButton.addEventListener("click", addTask);
 
-document.addEventListener("DOMContentLoaded", function() {
-    AddButton.addEventListener("click", addTask);
-    todoInput.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault(); // Prevent form submission
-            addTask();
-        }
-    });
-    deleteButton.addEventListener("click", deleteAllTasks);
-    displayTasks();
+  todoInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      addTask();
+    }
+  });
+
+  deleteButton.addEventListener("click", deleteAllTasks);
+  displayTasks();
 });
 
-
-
 function addTask() {
-    const newTask = todoInput.value.trim();
-    if (newTask !== "") {
-        todo.push({
-            text: newTask, 
-            disabled: false,
-        });
-        saveToLocalStorage();
-        todoInput.value = "";
-        displayTasks();
+  const newTask = todoInput.value.trim();
+
+  if (newTask !== "") {
+    todo.push({
+      text: newTask,
+      disabled: false,
+    });
+
+    saveToLocalStorage();
+    todoInput.value = "";
+    displayTasks();
   }
 }
 
 function deleteAllTasks() {
-   todo = [];
-   saveToLocalStorage();
-   displayTasks();  
+  todo = [];
+  saveToLocalStorage();
+  displayTasks();
 }
 
 function editTask(index) {
-    const todoItem = document.getElementById(`todo-${index}`);
-    const existingText = todoItem.textContent;
-    const inputElement = document.createElement("input");
-    
-    
-    inputElement.type = existingText;
-    todoItem.replaceWith(inputElement);
-    inputElement.focus();
+  const todoItem = document.getElementById(`todo-${index}`);
+  const existingText = todo[index].text;
 
-    inputElement.addEventListener("blur", function() {
+  const inputElement = document.createElement("input");
+  inputElement.type = "text";
+  inputElement.value = existingText;
+
+  todoItem.replaceWith(inputElement);
+  inputElement.focus();
+
+  inputElement.addEventListener("blur", function () {
     const updatedText = inputElement.value.trim();
+
     if (updatedText !== "") {
-        todo[index].text = updatedText;
-        saveToLocalStorage();
-        displayTasks();
+      todo[index].text = updatedText;
+      saveToLocalStorage();
+      displayTasks();
     } else {
-        inputElement.replaceWith(todoItem);
-    
+      displayTasks();
     }
+  });
 }
-    
 
 function displayTasks() {
   todoList.innerHTML = "";
+
   todo.forEach((item, index) => {
-    const p = document.createElement("p");
-    p.innerHTML = `
-      <div class="todo-container">
-        <input type="checkbox" class="todo-checkbox" id="input-${index}" ${
-      item.disabled ? "checked" : ""
-    }>
-        <p id="todo-${index}" class="${
-      item.disabled ? "disabled" : ""
-    }" onclick="editTask(${index})">${item.text}</p>
-      </div>
+    const div = document.createElement("div");
+    div.classList.add("todo-container");
+
+    div.innerHTML = `
+      <input type="checkbox" class="todo-checkbox" id="input-${index}" ${
+        item.disabled ? "checked" : ""
+      }>
+      <p id="todo-${index}" class="${
+        item.disabled ? "disabled" : ""
+      }">${item.text}</p>
     `;
-    p.querySelector(".todo-checkbox").addEventListener("change", () =>
+
+    div.querySelector(".todo-checkbox").addEventListener("change", () =>
       toggleTask(index)
     );
-    todoList.appendChild(p);
+
+    div.querySelector("p").addEventListener("click", () =>
+      editTask(index)
+    );
+
+    todoList.appendChild(div);
   });
+
   todoCount.textContent = todo.length;
 }
 
+function toggleTask(index) {
+  todo[index].disabled = !todo[index].disabled;
+  saveToLocalStorage();
+  displayTasks();
+}
+
 function saveToLocalStorage() {
-    localStorage.setItem("todo", JSON.stringify(todo));
-};
+  localStorage.setItem("todo", JSON.stringify(todo));
+}

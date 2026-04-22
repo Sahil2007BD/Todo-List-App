@@ -1,7 +1,7 @@
 :root {
   --gradient: linear-gradient(
     180deg,
-    rgba(45, 125, 233, 0.73) 20%,
+    rgba(45, 112, 1253, 0.73) 0%,
     #163e92 100%
   );
   --dark: #001747;
@@ -14,181 +14,245 @@
   --white: #ffffff;
 }
 
-
-
 body {
-    background: var(--gradient);
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0px;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+  background: radial-gradient(circle at top, #2d70fd, #163e92);
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
-
 
 .btn {
-    color: var(--white);
-    font-size: 1.1rem;
-    padding: 0.7rem 1.5rem;
-    border-radius: 0.3rem;
-    background-color: var(--blue);
-    border: none;
-    position: absolute;
-    right: 0.5rem;
-    bottom: 0.5rem;
+  background: linear-gradient(135deg, #2d70fd, #163e92);
+  border-radius: 0.6rem;
+  padding: 0.7rem 1.4rem;
+
+  transition: 0.3s ease;
 }
 
-h1, h2, h3, h4, h5, h6, p {
-    margin: 0;
+.delete-btn {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.2s;
 }
 
+.delete-btn:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
 
-/* To do container */
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(45, 112, 253, 0.4);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+/* Todo Container */
+
 .todo {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    border-radius: 2rem;
-    background: var(--white);
-    padding: 3rem;
-    height: 50%;
-    width: 60%;
-    box-shadow: 0 1rem 3rem 1rem rgba(0, 23 ,71, 0.15);
-    max-width: 30rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  border-radius: 2rem;
+  padding: 2.5rem;
+
+  width: 90%;
+  max-width: 28rem;
+
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+
+  box-shadow: 0 10px 40px rgba(0, 23, 71, 0.2);
 }
+
 h2 {
-    text-transform: uppercase;
-    height: 3rem;
-    color: var(--dark);
-    text-align: center;
+  text-transform: uppercase;
+  height: 3rem;
+  color: var(--dark);
+  text-align: center;
 }
+
 .input {
-    position: relative;
-    display: flex;
+  position: relative;
+  display: flex;
 }
 
 .input-field {
-    width: 100%;
-    border: 0.06rem solid #d2d2d2;
-    border-radius: 0.5rem;
-    padding: 1.25rem;
-    font-size: 1.1rem;
+  width: 100%;
+  border: none;
+  border-radius: 0.7rem;
+  padding: 1.2rem;
+
+  background: #f5f7fb;
+  font-size: 1rem;
+
+  transition: 0.3s;
+}
+
+.input-field:focus {
+  outline: none;
+  background: #fff;
+  box-shadow: 0 0 0 2px #2d70fd50;
 }
 
 input[type="text"]::placeholder {
-    color: var(--grey);                                                 
+  color: var(--grey);
 }
 
 .todo-container {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0.8rem 1rem;
+  border-radius: 0.7rem;
+
+  background: #f9fbff;
+  transition: 0.3s;
+}
+
+.todo-container:hover {
+  background: #eef3ff;
+  transform: translateX(3px);
 }
 
 ul {
-    padding: 0;
-    margin: 0;
-    overflow-y: scroll;
+  padding: 0;
+  margin: 0;
+  overflow-y: scroll;
 }
 
-
 li {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    padding: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 1.3rem;
+  flex: 1;
+  font-size: 0.95rem;
 }
 
 #todoList p {
-    color: #8f98a8;
+  display: flex;
+  gap: 1rem;
+  color: var(--dark);
+  align-items: center;
+}
+
+#todoList .disabled {
+  color: #8f98a8;
 }
 
 .disabled {
-    display: flex;
-    text-decoration: line-through;
-
-
+  display: flex;
+  text-decoration: line-through;
+  opacity: 0.6;
 }
 
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
 
 input[type="checkbox"]::before {
-    content: "\2713";
-    display: inline-block;
-    width: 2rem;
-    height: 2rem;
-    font-size: 1.7rem;
-    text-align: center;
-    border: 0.06rem solid var(--grey-border);
-    border-radius: 50%;
-    color: transparent;
+  content: "\2713";
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.7rem;
+  text-align: center;
+  border: 0.06rem solid var(--grey-border);
+  border-radius: 50%;
+  color: transparent;
+  transition: 0.2s;
 }
 
-input[type="checkbox"]::after {
-    color: var(--white);
-    background-color: var(--green);
-    border: 0.06rem solid var(--green);
-    border-radius: 50%;
+input[type="checkbox"]:checked::before {
+  color: var(--white);
+  background-color: var(--green);
+  border: 0.06rem solid var(--green);
+  border-radius: 50%;
 }
 
 .counter {
-    border: 0.06rem solid var(--grey-light);
+  border: 0.06rem solid var(--grey-light);
 }
 
 .counter-container {
-height: 2rem;
-display: flex;
-justify-content: space-between;
-color: var(--grey);
+  height: 2rem;
+  display: flex;
+  justify-content: space-between;
+  color: var(--grey);
+  transform: scale(1.1);
 }
 
-
 .counter-container p {
-    align-self: center;
+  align-self: center;
 }
 
 .counter-container button {
-    border: none;
-    background-color: transparent;
-    color: var(--grey);
-    font-size: 1rem;
+  border: none;
+  background-color: transparent;
+  color: var(--grey);
+  font-size: 1rem;
 }
 
 .footer {
-    display: flex;
-    gap: 1.8rem;
-    background-color: var(--white);
-    padding: 1.2rem;
-    border-radius: 0.5rem;
+  display: flex;
+  gap: 1.8rem;
+  background-color: var(--white);
+  padding: 1.2rem;
+  border-radius: 0.5rem;
 }
 
-.made-by, .author {
-    font-size: 0.9rem;
+.made-by,
+.author {
+  font-size: 0.9rem;
 }
 
-,.made-by {
-    color: var(--grey-dark);
+.made-by {
+  color: var(--grey-dark);
 }
 
 .author {
-    color: var(--blue);
-    font-weight: bold;
+  color: var(--blue);
+  font-weight: bold;
 }
 
 .scroll {
-    height: 50rem;
-    scrollbar-width: thin;
+  height: 15rem;
+  overflow-y: auto;
+
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--blue) transparent;
 }
 
+/* Chrome, Edge, Safari */
 .scroll::-webkit-scrollbar {
-    width: 0.6rem;
-}
-.scroll::-webkit-scrollbar-thumb {
-    background-color: var(--blue);
-    border-radius: 0.5rem;
+  width: 8px;
 }
 
 .scroll::-webkit-scrollbar-track {
-    display: none;
+  background: transparent;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2d70fd, #163e92);
+  border-radius: 10px;
 }
