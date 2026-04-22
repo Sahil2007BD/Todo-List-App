@@ -1,40 +1,68 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
-    <script src="./script.js" defer></script>
-    <title>Todo</title>
-  </head>
-  <body>
-    <section class="todo">
-      <h2>To-do list</h2>
-      <div class="input">
-        <input
-          type="text"
-          class="input-field"
-          id="todoInput"
-          placeholder="Add a new todo"
-        />
-        <button class="btn">Add</button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Todo List</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- Celebration Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <section class="todo">
+
+    <h2>To-Do List</h2>
+
+    <!-- Input Section -->
+    <div class="input">
+      <input
+        type="text"
+        id="todoInput"
+        class="input-field"
+        placeholder="Add a new task..."
+      >
+      <button class="btn">＋ Add</button>
+    </div>
+
+    <!-- Task List -->
+    <div class="scroll">
+      <div id="todoList"></div>
+    </div>
+
+    <!-- Progress Section -->
+    <div class="progress-wrapper">
+      <div class="progress-top">
+        <span>Progress</span>
+        <span id="progressText">0%</span>
       </div>
-      <ul class="scroll">
-        <li id="todoList"></li>
-      </ul>
-      <div>
-        <hr class="counter" />
-        <div class="counter-container">
-          <p><span id="todoCount">0</span> items total</p>
-          <button id="deleteButton">Delete All</button>
-        </div>
+
+      <div class="progress-bar">
+        <div id="progressFill"></div>
       </div>
-    </section>
-    <footer>
-      <div class="footer">
-        <p class="made-by">Made By</p>
-        <p class="author">Sahildev</p>
+    </div>
+
+    <!-- Footer Counter -->
+    <div>
+      <hr class="counter">
+
+      <div class="counter-container">
+        <p>📋 <span id="todoCount">0</span> Tasks</p>
+        <button id="deleteButton">Delete All</button>
       </div>
-    </footer>
-  </body>
+    </div>
+
+  </section>
+
+  <footer>
+    <div class="footer">
+      <p class="made-by">Made By</p>
+      <p class="author">Sahildev</p>
+    </div>
+  </footer>
+
+</body>
 </html>
