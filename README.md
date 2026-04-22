@@ -36,3 +36,6 @@ This project was created to practice **JavaScript DOM manipulation** and build a
 Contributions, issues, and feature requests are welcome.
 
 If you like this project, consider giving it a ⭐ on GitHub.
+<img width="1875" height="942" alt="Thumbnail" src="https://github.com/user-attachments/assets/b4ffcd0a-bdc7-4d70-8254-4daa2857f63e" />
+
+
