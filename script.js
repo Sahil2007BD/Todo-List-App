@@ -45,8 +45,33 @@ function addTask() {
 }
 
 function deleteAllTasks() {
-   
+   todo = [];
+   saveToLocalStorage();
+   displayTasks();  
 }
+
+function editTask(index) {
+    const todoItem = document.getElementById(`todo-${index}`);
+    const existingText = todoItem.textContent;
+    const inputElement = document.createElement("input");
+    
+    
+    inputElement.type = existingText;
+    todoItem.replaceWith(inputElement);
+    inputElement.focus();
+
+    inputElement.addEventListener("blur", function() {
+    const updatedText = inputElement.value.trim();
+    if (updatedText !== "") {
+        todo[index].text = updatedText;
+        saveToLocalStorage();
+        displayTasks();
+    } else {
+        inputElement.replaceWith(todoItem);
+    
+    }
+}
+    
 
 function displayTasks() {
   todoList.innerHTML = "";
