@@ -18,6 +18,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: sans-serif;
+  text-decoration: none;
 }
 
 body {
@@ -160,13 +161,59 @@ h2 {
 
 /* Checkbox */
 
-input[type="checkbox"] {
-  width: 22px;
-  height: 22px;
+Input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+
   cursor: pointer;
-  accent-color: #00d8a7;
+  position: relative;
+  transition: all 0.3s ease;
 }
 
+/* Hover Effect */
+input[type="checkbox"]:hover {
+  border-color: #2d70fd;
+  box-shadow: 0 0 0 6px rgba(45, 112, 253, 0.12);
+  transform: scale(1.05);
+}
+
+/* Checked State */
+input[type="checkbox"]:checked {
+  background: linear-gradient(135deg, #00d8a7, #2d70fd);
+  border-color: transparent;
+  box-shadow: 0 10px 20px rgba(45, 112, 253, 0.25);
+}
+
+/* Tick Mark */
+input[type="checkbox"]::after {
+  content: "✓";
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+
+  transition: 0.2s ease;
+}
+
+/* Show Tick When Checked */
+input[type="checkbox"]:checked::after {
+  transform: translate(-50%, -50%) scale(1);
+}
 /* Progress */
 
 .progress-wrapper {
