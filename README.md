@@ -21,7 +21,7 @@ This project allows users to add, manage, and delete tasks easily.
 
 You can see the project live here:
 
-🔗 Live Demo: SOON
+🔗 Live Demo: https://sahil2007bd.github.io/Todo-List-App/
 
 
 ## 💡 Purpose
